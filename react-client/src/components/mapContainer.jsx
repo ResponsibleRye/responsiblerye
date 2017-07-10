@@ -66,21 +66,21 @@ export class MapContainer extends React.Component {
   // }
 
   handleClick(mapProps, map, clickEvent) {
-    this.marker = {
-      position: clickEvent.latLng,
-      icon: {}
-    };
-    this.setState({ dialongOpen: true });
+    if (this.state.markerOn) {
+      this.marker = {
+        position: clickEvent.latLng,
+        icon: {}
+      };
+      this.setState({ dialongOpen: true });
+    }
   }
 
   handleDialogSubmit() {
     if (this.state.markerOn) {
-      console.log(this.state.eventDate);
       this.marker.eventName = this.state.eventName;
       this.marker.eventDate = this.state.eventDate.toDateString();
       this.marker.eventTime = this.state.eventTime.toLocaleTimeString();
 
-      console.log('handleDialogSubmit: ', this.marker);
       this.props.addMarker(this.marker);
       this.setState({
         dialongOpen: false,
@@ -90,7 +90,7 @@ export class MapContainer extends React.Component {
   }
 
   handleDialogClose() {
-    this.setState({ dialongOpen: false });
+    this.setState({ dialongOpen: false, markerOn: false });
   }
 
   handleEventNameChange(e) {
@@ -130,7 +130,7 @@ export class MapContainer extends React.Component {
 
   selectPin(pin) {
     this.setState({
-      markerOn: !this.state.markerOn,
+      markerOn: true,
       currentIcon: pin
     });
   }
