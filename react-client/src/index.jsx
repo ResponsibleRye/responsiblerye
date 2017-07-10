@@ -130,7 +130,7 @@ class MapView extends React.Component {
     return (
       <MuiThemeProvider>
         <div>
-          <Toc save={this.save} />
+          <Toc save={this.save} currentUser={this.props.currentUser}/>
           <MapContainer
             currentCenter={this.state.currentCenter}
             updateCenter={this.updateCenter}

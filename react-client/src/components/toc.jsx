@@ -8,7 +8,6 @@ import CreateIcon from 'material-ui/svg-icons/content/create';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-//import Divider from 'material-ui/Divider';
 import {grey50} from 'material-ui/styles/colors';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -55,8 +54,10 @@ class Toc extends Component {
         }}
       />
     ];
+    let render = null;
 
-    return (
+    if (this.props.currentUser) {
+      render =
       <div>
         <FloatingActionButton
           mini={true}
@@ -78,6 +79,12 @@ class Toc extends Component {
             onChange={this.handleChange}
           /><br />
         </Dialog>
+      </div>;
+    }
+
+    return (
+      <div>
+        {render}
       </div>
     );
   }
